@@ -2,6 +2,14 @@
   cursor: pointer;
 }
 
-#accordionSidebar{
+#accordionSidebar {
   transition: all 0.3s ease;
+}
+
+.alert-transition {
+  transition: all 0.3s ease;
+}
+
+.invalid-input {
+  box-shadow: 0 0 5px red;
 }

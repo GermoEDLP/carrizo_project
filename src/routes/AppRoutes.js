@@ -5,7 +5,7 @@ import { PrivatesRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
 
 export const AppRoutes = () => {
-  const logged = true;
+  const logged = false;
 
   return (
     <Router>
