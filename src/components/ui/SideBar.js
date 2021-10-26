@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { SideBarItem } from "./SideBarItem";
 
 export const SideBar = () => {
   const history = useHistory();
+
+  const initialState = {
+    show: false,
+    class: "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion",
+  };
+
+  const [toggled, setToggled] = useState(initialState);
+
+  const handleToggle = () => {
+    if (toggled.show) {
+      setToggled(initialState);
+    } else {
+      setToggled({
+        show: true,
+        class:
+          "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled",
+      });
+    }
+  };
 
   console.log(history);
 
@@ -12,11 +31,7 @@ export const SideBar = () => {
   };
 
   return (
-    <ul
-      className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-      id="accordionSidebar"
-    >
-      {/* <!-- Sidebar - Brand --> */}
+    <ul className={toggled.class} id="accordionSidebar">
       <a
         className="sidebar-brand d-flex align-items-center justify-content-center c_pointer"
         onClick={() => goTo("/")}
@@ -27,10 +42,8 @@ export const SideBar = () => {
         <div className="sidebar-brand-text mx-3">Carrizo</div>
       </a>
 
-      {/* <!-- Divider --> */}
       <hr className="sidebar-divider my-0" />
 
-      {/* <!-- Nav Item - Dashboard --> */}
       <SideBarItem
         title="Nuevo trabajo"
         icon="plus"
@@ -39,13 +52,10 @@ export const SideBar = () => {
         active={history.location.pathname === "/new"}
       />
 
-      {/* <!-- Divider --> */}
       <hr className="sidebar-divider" />
 
-      {/* <!-- Heading --> */}
       <div className="sidebar-heading">Usuarios</div>
 
-      {/* <!-- Nav Item - Pages Collapse Menu --> */}
       <SideBarItem
         title="Clientes"
         icon="users"
@@ -54,7 +64,6 @@ export const SideBar = () => {
         active={history.location.pathname === "/clients"}
       />
 
-      {/* <!-- Nav Item - Utilities Collapse Menu --> */}
       <SideBarItem
         title="Odontologías"
         icon="tooth"
@@ -63,76 +72,28 @@ export const SideBar = () => {
         active={history.location.pathname === "/odonto"}
       />
 
-      {/* <!-- Divider --> */}
       <hr className="sidebar-divider" />
 
-      {/* <!-- Heading --> */}
-      <div className="sidebar-heading">Addons</div>
+      <div className="sidebar-heading">
+        {toggled.show ? "Config." : "Configuración"}
+      </div>
 
-      {/* <!-- Nav Item - Pages Collapse Menu --> */}
-      <li className="nav-item">
-        <a
-          className="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapsePages"
-          aria-expanded="false"
-          aria-controls="collapsePages"
-        >
-          <i className="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div
-          id="collapsePages"
-          className="collapse"
-          aria-labelledby="headingPages"
-          data-parent="#accordionSidebar"
-        >
-          <div className="bg-white py-2 collapse-inner rounded">
-            <h6 className="collapse-header">Login Screens:</h6>
-            <a className="collapse-item" href="login.html">
-              Login
-            </a>
-            <a className="collapse-item" href="register.html">
-              Register
-            </a>
-            <a className="collapse-item" href="forgot-password.html">
-              Forgot Password
-            </a>
-            <div className="collapse-divider"></div>
-            <h6 className="collapse-header">Other Pages:</h6>
-            <a className="collapse-item" href="404.html">
-              404 Page
-            </a>
-            <a className="collapse-item active" href="blank.html">
-              Blank Page
-            </a>
-          </div>
-        </div>
-      </li>
+      <SideBarItem
+        title="Tipos de trabajo"
+        icon="cog"
+        goTo={goTo}
+        path="/tipo"
+        active={history.location.pathname === "/tipo"}
+      />
 
-      {/* <!-- Nav Item - Charts --> */}
-      <li className="nav-item">
-        <a className="nav-link" href="charts.html">
-          <i className="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span>
-        </a>
-      </li>
-
-      {/* <!-- Nav Item - Tables --> */}
-      <li className="nav-item">
-        <a className="nav-link" href="tables.html">
-          <i className="fas fa-fw fa-table"></i>
-          <span>Tables</span>
-        </a>
-      </li>
-
-      {/* <!-- Divider --> */}
       <hr className="sidebar-divider d-none d-md-block" />
 
-      {/* <!-- Sidebar Toggler (Sidebar) --> */}
       <div className="text-center d-none d-md-inline">
-        <button className="rounded-circle border-0" id="sidebarToggle"></button>
+        <button
+          className="rounded-circle border-0"
+          id="sidebarToggle"
+          onClick={handleToggle}
+        ></button>
       </div>
     </ul>
   );

@@ -1,3 +1,7 @@
 .c_pointer {
   cursor: pointer;
 }
+
+#accordionSidebar{
+  transition: all 0.3s ease;
+}
