@@ -1,10 +1,16 @@
+import { useState } from "react";
 import "./App.css";
-import profile from "./img/undraw_profile.svg"
-import profile1 from "./img/undraw_profile_1.svg"
-import profile2 from "./img/undraw_profile_2.svg"
-import profile3 from "./img/undraw_profile_3.svg"
+import profile from "./img/undraw_profile.svg";
+import profile1 from "./img/undraw_profile_1.svg";
+import profile2 from "./img/undraw_profile_2.svg";
+import profile3 from "./img/undraw_profile_3.svg";
 
 const App = () => {
+  const [user, setUser] = useState({
+    isAuthenticated: false,
+    user: null,
+  });
+
   return (
     <div>
       {/* <!-- Page Wrapper --> */}
@@ -181,7 +187,10 @@ const App = () => {
 
           {/* <!-- Sidebar Toggler (Sidebar) --> */}
           <div className="text-center d-none d-md-inline">
-            <button className="rounded-circle border-0" id="sidebarToggle"></button>
+            <button
+              className="rounded-circle border-0"
+              id="sidebarToggle"
+            ></button>
           </div>
         </ul>
         {/* <!-- End of Sidebar --> */}
@@ -278,38 +287,53 @@ const App = () => {
                     aria-labelledby="alertsDropdown"
                   >
                     <h6 className="dropdown-header">Alerts Center</h6>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+                    <a
+                      className="dropdown-item d-flex align-items-center"
+                      href="#"
+                    >
                       <div className="mr-3">
                         <div className="icon-circle bg-primary">
                           <i className="fas fa-file-alt text-white"></i>
                         </div>
                       </div>
                       <div>
-                        <div className="small text-gray-500">December 12, 2019</div>
+                        <div className="small text-gray-500">
+                          December 12, 2019
+                        </div>
                         <span className="font-weight-bold">
                           A new monthly report is ready to download!
                         </span>
                       </div>
                     </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+                    <a
+                      className="dropdown-item d-flex align-items-center"
+                      href="#"
+                    >
                       <div className="mr-3">
                         <div className="icon-circle bg-success">
                           <i className="fas fa-donate text-white"></i>
                         </div>
                       </div>
                       <div>
-                        <div className="small text-gray-500">December 7, 2019</div>
+                        <div className="small text-gray-500">
+                          December 7, 2019
+                        </div>
                         $290.29 has been deposited into your account!
                       </div>
                     </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+                    <a
+                      className="dropdown-item d-flex align-items-center"
+                      href="#"
+                    >
                       <div className="mr-3">
                         <div className="icon-circle bg-warning">
                           <i className="fas fa-exclamation-triangle text-white"></i>
                         </div>
                       </div>
                       <div>
-                        <div className="small text-gray-500">December 2, 2019</div>
+                        <div className="small text-gray-500">
+                          December 2, 2019
+                        </div>
                         Spending Alert: We've noticed unusually high spending
                         for your account.
                       </div>
@@ -344,7 +368,10 @@ const App = () => {
                     aria-labelledby="messagesDropdown"
                   >
                     <h6 className="dropdown-header">Message Center</h6>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+                    <a
+                      className="dropdown-item d-flex align-items-center"
+                      href="#"
+                    >
                       <div className="dropdown-list-image mr-3">
                         <img
                           className="rounded-circle"
@@ -363,7 +390,10 @@ const App = () => {
                         </div>
                       </div>
                     </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+                    <a
+                      className="dropdown-item d-flex align-items-center"
+                      href="#"
+                    >
                       <div className="dropdown-list-image mr-3">
                         <img
                           className="rounded-circle"
@@ -380,7 +410,10 @@ const App = () => {
                         <div className="small text-gray-500">Jae Chun · 1d</div>
                       </div>
                     </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+                    <a
+                      className="dropdown-item d-flex align-items-center"
+                      href="#"
+                    >
                       <div className="dropdown-list-image mr-3">
                         <img
                           className="rounded-circle"
@@ -399,7 +432,10 @@ const App = () => {
                         </div>
                       </div>
                     </a>
-                    <a className="dropdown-item d-flex align-items-center" href="#">
+                    <a
+                      className="dropdown-item d-flex align-items-center"
+                      href="#"
+                    >
                       <div className="dropdown-list-image mr-3">
                         <img
                           className="rounded-circle"
@@ -444,10 +480,7 @@ const App = () => {
                     <span className="mr-2 d-none d-lg-inline text-gray-600 small">
                       Douglas McGee
                     </span>
-                    <img
-                      className="img-profile rounded-circle"
-                      src={profile}
-                    />
+                    <img className="img-profile rounded-circle" src={profile} />
                   </a>
                   {/* <!-- Dropdown - User Information --> */}
                   <div
