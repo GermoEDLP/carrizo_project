@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { addDoc, collection, getDocs } from "@firebase/firestore";
 import { db } from "../../firebase";
 import { Loading } from "../../components/parts/Loading";
 import { Lista } from "../../components/odontologia/Lista";
 import { OdontoForm } from "../../components/odontologia/OdontoForm";
+import { ToastContext } from "../../context/ToastContext";
+
+
 
 export const OdontoScreen = () => {
+
+  const {setToast} = useContext(ToastContext)
+
   const [odonto, setOdonto] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
@@ -18,16 +24,9 @@ export const OdontoScreen = () => {
     });
   };
 
-  const addOdonto = async () => {
+  const addOdonto = async (form) => {
     try {
-      const docRef = await addDoc(collection(db, "odontologos"), {
-        centro: "La Rivera2",
-        cuil: "1234562346",
-        direccion: "520 n 20",
-        email: "german@gmail.com",
-        nombre: "Jose Perez",
-        telefono: { celular: "123345", extra: "1242456", fijo: "41241424" },
-      });
+      const docRef = await addDoc(collection(db, "odontologos"), form);
       loadData();
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -40,6 +39,7 @@ export const OdontoScreen = () => {
 
   return (
     <div className="card shadow mb-4">
+      
       <div className="card-header py-3">
         <h5
           className="m-0 font-weight-bold text-primary"
@@ -57,10 +57,17 @@ export const OdontoScreen = () => {
         >
           <i className={showForm?"fas fa-chevron-left":"fas fa-plus"}></i>
         </button>
+        <button
+          className="btn btn-success btn-circle float-right"
+          style={{ height: "2rem !important", width: "2rem !important" }}
+          onClick={()=>{setToast({style:"error",message:"Se agrego correctamente"})}}
+        >
+          <i className={showForm?"fas fa-chevron-left":"fas fa-minus"}></i>
+        </button>
       </div>
       <div className="card-body">
         {showForm ? (
-          <OdontoForm setShowForm={setShowForm}/>
+          <OdontoForm setShowForm={setShowForm} addOdonto={addOdonto}/>
         ) : odonto.length == 0 ? (
           <Loading />
         ) : (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const OdontoForm = ({ setShowForm }) => {
+export const OdontoForm = ({ setShowForm, addOdonto }) => {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -19,7 +19,8 @@ export const OdontoForm = ({ setShowForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    setShowForm(false);
+    addOdonto(form);
   };
 
   return (
@@ -29,7 +30,7 @@ export const OdontoForm = ({ setShowForm }) => {
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="name">
-              Nombre <span style={{ color: "red" }}>*</span>
+              Nombre <span className="text-danger">*</span>
             </label>
             <input
               type="text"
@@ -42,7 +43,7 @@ export const OdontoForm = ({ setShowForm }) => {
           </div>
           <div className="form-group col-md-6">
             <label htmlFor="email">
-              Email <span style={{ color: "red" }}>*</span>
+              Email <span className="text-danger">*</span>
             </label>
             <input
               type="email"
@@ -57,7 +58,7 @@ export const OdontoForm = ({ setShowForm }) => {
         <div className="form-row">
           <div className="form-group col-md-4">
             <label htmlFor="phone">
-              Teléfono <span style={{ color: "red" }}>*</span>
+              Teléfono <span className="text-danger">*</span>
             </label>
             <input
               type="text"
@@ -102,6 +103,9 @@ export const OdontoForm = ({ setShowForm }) => {
             onChange={handleChange}
           />
         </div>
+        <p className="text-danger">
+            * Campos obligatorios.
+        </p>
         <button
           type="button"
           className="btn btn-secondary"

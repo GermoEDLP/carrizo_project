@@ -24,8 +24,6 @@ export const SideBar = () => {
     }
   };
 
-  console.log(history);
-
   const goTo = (path) => {
     history.push(path);
   };
