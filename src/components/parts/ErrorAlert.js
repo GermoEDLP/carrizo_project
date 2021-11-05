@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export const ErrorAlert = ({
-  msg,
+  msg = "Ocurrió un error, intentelo nuevamente",
   entrada = " animate__zoomInDown",
   salida = " animate__zoomOutUp",
   tipo = "danger",
@@ -24,7 +24,6 @@ export const ErrorAlert = ({
   };
 
   useEffect(() => {
-    console.log("error");
     if (error) move();
   }, [error]);
 

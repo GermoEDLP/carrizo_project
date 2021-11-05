@@ -13,3 +13,8 @@
 .invalid-input {
   box-shadow: 0 0 5px red;
 }
+
+.loading_container{
+  text-align: center;
+  padding: 20px;
+}

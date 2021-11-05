@@ -65,7 +65,7 @@ export const SideBar = () => {
       />
 
       <SideBarItem
-        title="Odontologías"
+        title="Odontologos"
         icon="tooth"
         goTo={goTo}
         path="/odonto"

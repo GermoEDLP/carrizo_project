@@ -26,7 +26,6 @@ export const LoginScreen = () => {
     if (remember) {
       localStorage.setItem("email", email);
     }
-    setError(true);
   };
 
   useEffect(() => {
@@ -57,7 +56,7 @@ export const LoginScreen = () => {
                       <div className="form-group">
                         <input
                           type="email"
-                          className="form-control form-control-user invalid-input"
+                          className="form-control form-control-user"
                           id="email"
                           name="email"
                           value={email}
@@ -68,7 +67,7 @@ export const LoginScreen = () => {
                       <div className="form-group">
                         <input
                           type="password"
-                          className="form-control form-control-user invalid-input"
+                          className="form-control form-control-user"
                           id="password"
                           name="password"
                           value={password}
@@ -96,7 +95,7 @@ export const LoginScreen = () => {
                       </div>
                       {error ? (
                         <ErrorAlert
-                          msg="Usuario incorrecto"
+                          msg={error}
                           entrada="animate__fadeInDown"
                           salida="animate__fadeOutUp"
                           setError={setError}
@@ -106,6 +105,7 @@ export const LoginScreen = () => {
                       <button
                         type="submit"
                         className="btn btn-primary btn-user btn-block"
+                        disabled={email == "" || password == ""}
                       >
                         Iniciar
                       </button>
